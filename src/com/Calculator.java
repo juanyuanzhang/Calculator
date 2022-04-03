@@ -76,6 +76,13 @@ class CalculatorPanel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		String s = e.getActionCommand(); //按下按鈕輸入的文字
+		if(s.equals("Clear")) {
+			//全部歸零
+			display.setText("0"); ; //顯示數字用
+			arg = 0; //計算總數
+			op = "="; //算數符號
+			start = true;
+		}
 	
 		//如果是0~9跟dot並且是第一個輸入數字的直接顯示，不第一個輸入的數字顯示在第一個數字後面
 		if('0'<=s.charAt(0)&&s.charAt(0)<='9'||s.equals(".")) {
@@ -96,7 +103,7 @@ class CalculatorPanel extends JPanel implements ActionListener{
 		}else {
 			//先判斷是否為輸入-並且為第一個，判斷為負數，
 			if(start) {
-				if(s.equals("-")) {
+				if(s.equals("-") && display.getText().equals(0)) {
 					display.setText(s);
 					start = false;
 				}else if(s.equals("Clear")) {
